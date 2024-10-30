@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://www.iconpacks.net/icons/2/free-airplane-icon-1755-thumb.png" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="docs/style.css" />
+    <title>Flight Planner</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Flight Planning</h1>
+        <form id="flightPlanForm">
+            <div class="form-group">
+                <input type="text" id="callsign" name="callsign" required placeholder="Callsign"
+                    oninput="this.value = this.value.toUpperCase()">
+            </div>
+            <div class="form-group">
+                <select id="aircraft" name="aircraft" required>
+                    <option value="" disabled selected>Select Aircraft</option>
+                    <option value="Airbus A220">Airbus A220</option>
+                    <option value="Airbus A320">Airbus A320</option>
+                    <option value="Airbus A330-300">Airbus A330-300</option>
+                    <option value="Airbus A350-900">Airbus A350-900</option>
+                    <option value="Boeing 717">Boeing 717</option>
+                    <option value="Boeing 727">Boeing 727</option>
+                    <option value="Boeing 737">Boeing 737</option>
+                    <option value="Boeing 757">Boeing 757</option>
+                    <option value="Boeing 787">Boeing 787</option>
+                    <option value="Boeing 777">Boeing 777</option>
+                    <option value="Piper M350">Piper M350</option>
+                    <option value="Bae Systems Hawk T1">Bae Systems Hawk T1</option>
+                    <option value="Eurofighter Typhoon">Eurofighter Typhoon</option>
+                    <option value="Bombardier Dash 8-Q400">Bombardier Dash 8-Q400</option>
+                    <option value="Cessna 150A">Cessna 150A</option>
+                    <option value="Cessna Citation II">Cessna Citation II</option>
+                    <option value="Fokker 100">Fokker 100</option>
+                    <option value="Beechcraft Baron G58">Beechcraft Baron G58</option>
+                    <option value="MD-11">MD-11</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <select id="flightRule" name="flightRule" required>
+                    <option value="" disabled selected>Select Flight Rule Type</option>
+                    <option value="IFR">IFR</option>
+                    <option value="VFR">VFR</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="text" id="cruisingLevel" maxlength="3" name="cruisingLevel" required
+                    placeholder="Cruising Level" oninput="this.value = this.value.replace(/[^0-9]/g, '')" min="30">
+            </div>
+            <div class="form-group">
+                <input type="text" id="squawk" name="squawk" maxlength="4" required placeholder="Squawk"
+                    oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+            </div>
+            <div class="form-group">
+                <input type="text" id="sid" name="sid" placeholder="SID (Optional)"
+                    oninput="this.value = this.value.toUpperCase()">
+            </div>
+            <div class="form-group">
+                <input type="text" id="departure" name="departure" maxlength="4" required
+                    placeholder="Departure Airport"
+                    oninput="this.value = this.value.replace(/[^A-Za-z]/g, '').toUpperCase()">
+            </div>
+            <div class="form-group">
+                <input type="text" id="arrival" name="arrival" maxlength="4" required placeholder="Arrival Airport"
+                    oninput="this.value = this.value.replace(/[^A-Za-z]/g, '').toUpperCase()">
+            </div>
+            <button type="submit">Submit Flight Plan</button>
+        </form>
+        <div class="button-group">
+            <button type="button" onclick="window.location.href = 'https://goly67.github.io/FlightPlanEditor/'">Flight
+                Plan Editor</button>
+            <!--https://goly67.github.io/Under-Construction/-->
+            <button type="button" onclick="window.location.href = 'https://goly67.github.io/FlightPlanViewer/'">Flight
+                Plan Viewer</button>
+        </div>
+    </div>
+    <div class="iframe-container">
+        <iframe
+            src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRr4CDxXGfVbc6WTN6YypEeJVpl4LsIyw2ZPeYrEVtQc6Mh_wM3kvrN_nQ_HIvkWgP8zh45AVoUI7T-/pubhtml"
+            frameborder="0"></iframe>
+    </div>
+    <script src="docs/script.js" defer></script>
+</body>
+
+</html>
