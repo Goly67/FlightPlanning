@@ -86,11 +86,12 @@
             text-align: center;
             margin-bottom: 1rem;
             /* Reduced margin */
-            font-size: 1.8rem;
+            font-size: 2rem;
             /* Reduced font size */
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 2px;
+            margin-top: 0.5uttrem;
         }
 
         form {
@@ -174,6 +175,11 @@
             justify-content: space-between;
             gap: 0.6rem;
             /* Reduced gap */
-            margin-top: 0.6rem;
-            /* Reduced margin */
+        }
+
+        .button-group2 {
+            display: flex;
+            justify-content: space-between;
+            gap: 0.6rem;
+            /* Reduced gap */
         }

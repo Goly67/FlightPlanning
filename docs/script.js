@@ -1,7 +1,16 @@
-// Automatically focus on the 'callsign' input field when the page loads
+// Automatically focus on the 'callsign' input field and load the last saved URL when the page loads
 window.onload = function() {
+  // Focus on the 'callsign' input field
   document.getElementById('callsign').focus();
+
+  // Load last stored URL in the iframe, or leave it blank if no URL is saved
+  const savedUrl = localStorage.getItem('lastIframeUrl');
+  document.getElementById('displayIframe').src = savedUrl ? savedUrl : ''; // Show nothing if no URL is saved
+
+  // Automatically generate a squawk code and set it in the squawk input field
+  document.getElementById('squawk').value = generateRandomSquawk();
 };
+
 
 document.getElementById('flightPlanForm').addEventListener('submit', function (e) {
   e.preventDefault();
@@ -129,20 +138,11 @@ function checkForUpdates() {
 // Set an interval to check for updates every 30 seconds (adjust as needed)
 setInterval(checkForUpdates, 30000); // 30000 milliseconds = 30 seconds
 
-// Load saved URL from localStorage, if any
-document.addEventListener('DOMContentLoaded', () => {
-  const savedUrl = localStorage.getItem('iframeUrl');
-  if (savedUrl) {
-      document.getElementById('displayIframe').src = savedUrl;
-      document.getElementById('iframeUrl').value = savedUrl;
-  }
-});
-
-// Update iframe URL and save to localStorage
-function updateIframeUrl() {
-  const url = document.getElementById('iframeUrl').value;
-  document.getElementById('displayIframe').src = url;
-  localStorage.setItem('iframeUrl', url);
+// Function to load URL and store it in localStorage
+function loadUrl(url) {
+  const iframe = document.getElementById('displayIframe');
+  iframe.src = url; // Set the iframe source to the selected URL
+  localStorage.setItem('lastIframeUrl', url); // Save URL to localStorage
 }
 
 // Function to generate a random squawk code starting with "3"
