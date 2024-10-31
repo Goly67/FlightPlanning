@@ -35,9 +35,21 @@
         
         iframe {
             width: 100%; /* Make the iframe responsive */
-            height: 560px; /* Adjusted to show only 5 rows */
+            height: 480px; /* Adjusted to show only 5 rows */
             border: none;
             border-radius: 8px;
+        }
+
+        .form-group2 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: var(--background-color);
         }
         
         @media (max-width: 768px) {

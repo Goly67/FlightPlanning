@@ -72,15 +72,19 @@
             <button type="submit">Submit Flight Plan</button>
         </form>
         <div class="button-group">
-            <button type="button" onclick="window.location.href = 'https://goly67.github.io/FlightsEditor/'">Flight
+            <button type="button" onclick="window.location.href = 'https://goly67.github.io/FlightPlanEditor/'">Flight
                 Plan Editor</button>
             <!--https://goly67.github.io/Under-Construction/-->
-            <button type="button" onclick="window.location.href = 'https://goly67.github.io/FlightPlans/'">Flight
+            <button type="button" onclick="window.location.href = 'https://goly67.github.io/FlightPlanViewer/'">Flight
                 Plan Viewer</button>
         </div>
     </div>
     <div class="iframe-container">
-        <iframe
+        <div class="form-group2" >
+            <input type="url" id="iframeUrl" placeholder="Enter a URL to display" />
+            <button onclick="updateIframeUrl()">Load URL</button>
+        </div>
+        <iframe id="displayIframe"
             src="https://docs.google.com/spreadsheets/d/1PuRVxrcqEt-tmLfPUw0cmFz4a1vQb7wprIBERfYuu6A/edit?usp=sharing"
             frameborder="0"></iframe>
     </div>

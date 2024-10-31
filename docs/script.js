@@ -129,6 +129,21 @@ function checkForUpdates() {
 // Set an interval to check for updates every 30 seconds (adjust as needed)
 setInterval(checkForUpdates, 30000); // 30000 milliseconds = 30 seconds
 
+// Load saved URL from localStorage, if any
+document.addEventListener('DOMContentLoaded', () => {
+  const savedUrl = localStorage.getItem('iframeUrl');
+  if (savedUrl) {
+      document.getElementById('displayIframe').src = savedUrl;
+      document.getElementById('iframeUrl').value = savedUrl;
+  }
+});
+
+// Update iframe URL and save to localStorage
+function updateIframeUrl() {
+  const url = document.getElementById('iframeUrl').value;
+  document.getElementById('displayIframe').src = url;
+  localStorage.setItem('iframeUrl', url);
+}
 
 // Function to generate a random squawk code starting with "3"
 function generateRandomSquawk() {
