@@ -1,14 +1,11 @@
-// Automatically focus on the 'callsign' input field and load the last saved URL when the page loads
 window.onload = function() {
-  // Focus on the 'callsign' input field
   document.getElementById('callsign').focus();
-
-  // Load last stored URL in the iframe, or leave it blank if no URL is saved
   const savedUrl = localStorage.getItem('lastIframeUrl');
-  document.getElementById('displayIframe').src = savedUrl ? savedUrl : ''; // Show nothing if no URL is saved
-
-  // Automatically generate a squawk code and set it in the squawk input field
+  document.getElementById('displayIframe').src = savedUrl ? savedUrl : '';
   document.getElementById('squawk').value = generateRandomSquawk();
+
+  // Check if the compass should be visible on load
+  checkCompassVisibility();
 };
 
 
@@ -138,11 +135,25 @@ function checkForUpdates() {
 // Set an interval to check for updates every 30 seconds (adjust as needed)
 setInterval(checkForUpdates, 30000); // 30000 milliseconds = 30 seconds
 
-// Function to load URL and store it in localStorage
+// Function to check visibility of the compass based on the iframe URL
+function checkCompassVisibility() {
+  const iframe = document.getElementById('displayIframe');
+  const compassContainer = document.querySelector('.compass-container');
+
+  if (iframe.src.includes('dev.project-flight.com')) {
+    compassContainer.style.display = 'block'; // Show compass
+  } else {
+    compassContainer.style.display = 'none'; // Hide compass
+  }
+}
+
 function loadUrl(url) {
   const iframe = document.getElementById('displayIframe');
   iframe.src = url; // Set the iframe source to the selected URL
   localStorage.setItem('lastIframeUrl', url); // Save URL to localStorage
+
+  // Check compass visibility after loading the new URL
+  iframe.onload = checkCompassVisibility; // Check after the iframe has loaded
 }
 
 // Function to generate a random squawk code starting with "3"
