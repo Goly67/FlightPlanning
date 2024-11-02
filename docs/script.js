@@ -156,10 +156,11 @@ function loadUrl(url) {
   iframe.onload = checkCompassVisibility; // Check after the iframe has loaded
 }
 
+// Function to generate a random squawk code starting with "3"
 function generateRandomSquawk() {
-  // Create a random 3-digit number using only 0-7
-  const randomPart = Array.from({ length: 3 }, () => Math.floor(Math.random() * 8)).join('');
-  return "3" + randomPart; // Ensures the squawk starts with 3
+  const randomPart = Math.floor(1000 + Math.random() * 9000).toString(); // Generates a random 4-digit number
+  return "3" + randomPart.slice(1); // Ensures the squawk starts with 3
 }
+
 // Automatically generate a squawk code and set it in the squawk input field when the page loads
 document.getElementById('squawk').value = generateRandomSquawk();

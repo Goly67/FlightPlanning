@@ -28,7 +28,7 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-13%, -39%);
+            transform: translate(-13%, -40%);
             z-index: 10;
             pointer-events: none; /* Allows clicks to pass through to iframe */
         }
@@ -36,7 +36,7 @@
         .compass {
             width: 440px; /* Adjust size as needed */
             height: auto;
-            transform: rotate(187deg); /* Set this to the angle you want */
+            transform-origin: center; /* Set rotation center to compass center */
         }
         
     
@@ -92,7 +92,6 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             width: 100%;
             max-width: 350px;
-            backdrop-filter: blur(10px);
             box-sizing: border-box;
             margin-left: 2rem;
         }
