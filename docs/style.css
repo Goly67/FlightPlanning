@@ -35,7 +35,6 @@
         .compass {
             width: 440px; /* Adjust size as needed */
             height: auto;
-            transform: rotate(187deg); /* Set this to the angle you want */
         }
 
         #flightDataInput {
