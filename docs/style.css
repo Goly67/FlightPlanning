@@ -24,22 +24,20 @@
         }
 
         
-        .compass-container {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-13%, -40%);
-            z-index: 10;
-            pointer-events: none; /* Allows clicks to pass through to iframe */
+
+        #flightDataInput {
+            width: 100%;
+            height: 30px;
+            resize: none;
+            padding: 0.2rem;
+            font-size: 0.8rem;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            margin: 0.25rem 0;
+            box-sizing: border-box;
+            border-radius: 8px; /* Added rounded corners */
+            margin-right: 0.5rem; /* Added spacing from the button */
         }
-        
-        .compass {
-            width: 440px; /* Adjust size as needed */
-            height: auto;
-            transform-origin: center; /* Set rotation center to compass center */
-        }
-        
-    
         .iframe-container {
             border: none;
             border-radius: 8px; /* Rounded corners */
@@ -92,6 +90,7 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             width: 100%;
             max-width: 350px;
+            backdrop-filter: blur(10px);
             box-sizing: border-box;
             margin-left: 2rem;
         }
@@ -106,7 +105,7 @@
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 2px;
-            margin-top: 0.5uttrem;
+            margin-top: 0.5rem;
         }
 
         form {
@@ -198,3 +197,4 @@
             gap: 0.6rem;
             /* Reduced gap */
         }
+
