@@ -38,6 +38,7 @@
             border-radius: 8px; /* Added rounded corners */
             margin-right: 0.5rem; /* Added spacing from the button */
         }
+
         .iframe-container {
             border: none;
             border-radius: 8px; /* Rounded corners */
@@ -98,7 +99,7 @@
         h1 {
             color: var(--secondary-color);
             text-align: center;
-            margin-bottom: 1rem;
+            margin-bottom: 1px;
             /* Reduced margin */
             font-size: 2rem;
             /* Reduced font size */
