@@ -137,15 +137,62 @@ setInterval(checkForUpdates, 30000); // 30000 milliseconds = 30 seconds
 
 function parseFlightData() {
   const data = document.getElementById("flightDataInput").value;
-  const callsign = data.match(/Callsign: (.+)/i)?.[1]?.trim();
-  const aircraft = data.match(/Aircraft: (.+)/i)?.[1]?.trim();
-  const flightRule = data.match(/IFR\/VFR: (.+)/i)?.[1]?.trim();
-  const departing = data.match(/Departing: (.+)/i)?.[1]?.trim();
-  const arriving = data.match(/Arriving: (.+)/i)?.[1]?.trim();
-  const cruisingLevel = data.match(/CRZ FL: (.+)/i)?.[1]?.trim();
-  
+  const callsign = data.match(/Callsign:\s*(.+)/i)?.[1]?.trim();
+  const aircraft = data.match(/Aircraft:\s*(.+)/i)?.[1]?.trim();
+  const flightRule = data.match(/IFR\/VFR:\s*(.+)/i)?.[1]?.trim();
+  const departing = data.match(/Departing:\s*(.+)/i)?.[1]?.trim();
+  const arriving = data.match(/Arriving:\s*(.+)/i)?.[1]?.trim();
+  const cruisingLevel = data.match(/CRZ FL:\s*(.+)/i)?.[1]?.trim();
+
   document.getElementById("callsign").value = callsign || "";
-  document.getElementById("aircraft").value = aircraft || "";
+
+  // Mapping of aircraft abbreviations to full names
+  const aircraftMapping = {
+    "A220": "Airbus A220",
+    "A320": "Airbus A320",
+    "A330-300": "Airbus A330-300",
+    "A350-900": "Airbus A350-900",
+    "B717": "Boeing 717",
+    "B727": "Boeing 727",
+    "B737": "Boeing 737",
+    "B757": "Boeing 757",
+    "B787": "Boeing 787",
+    "B777": "Boeing 777",
+    "M350": "Piper M350",
+    "HAWK T1": "Bae Systems Hawk T1",
+    "TYPHOON": "Eurofighter Typhoon",
+    "Q400": "Bombardier Dash 8-Q400",
+    "150A": "Cessna 150A",
+    "CITATION II": "Cessna Citation II",
+    "F100": "Fokker 100",
+    "G58": "Beechcraft Baron G58",
+    "MD-11": "MD-11",
+  };
+
+  const aircraftDropdown = document.getElementById("aircraft");
+  const aircraftOptions = Array.from(aircraftDropdown.options);
+
+  if (aircraft) {
+    // Convert input to full name if abbreviation exists in mapping
+    const fullAircraftName = aircraftMapping[aircraft.toUpperCase()] || aircraft;
+
+    // Search dropdown options for a match
+    const matchedOption = aircraftOptions.find(option => 
+      option.value.toLowerCase() === fullAircraftName.toLowerCase()
+    );
+
+    if (matchedOption) {
+      aircraftDropdown.value = matchedOption.value; // Select matched option in dropdown
+    } else {
+      // Add new option if not in dropdown and select it
+      const newOption = new Option(fullAircraftName, fullAircraftName);
+      aircraftDropdown.add(newOption);
+      aircraftDropdown.value = fullAircraftName;
+    }
+  } else {
+    aircraftDropdown.value = ""; // Reset if no aircraft is found
+  }
+
   document.getElementById("flightRule").value = flightRule || "";
   document.getElementById("cruisingLevel").value = cruisingLevel || "";
   document.getElementById("departure").value = departing || "";
