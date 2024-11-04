@@ -23,7 +23,20 @@
             align-items: center;
         }
 
+        .compass-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-13%, -39%);
+            z-index: 10;
+            pointer-events: none; /* Allows clicks to pass through to iframe */
+        }
         
+        .compass {
+            width: 440px; /* Adjust size as needed */
+            height: auto;
+            transform: rotate(187deg); /* Set this to the angle you want */
+        }
 
         #flightDataInput {
             width: 100%;
