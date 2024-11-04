@@ -135,6 +135,23 @@ function checkForUpdates() {
 // Set an interval to check for updates every 30 seconds (adjust as needed)
 setInterval(checkForUpdates, 30000); // 30000 milliseconds = 30 seconds
 
+function parseFlightData() {
+  const data = document.getElementById("flightDataInput").value;
+  const callsign = data.match(/Callsign: (.+)/i)?.[1]?.trim();
+  const aircraft = data.match(/Aircraft: (.+)/i)?.[1]?.trim();
+  const flightRule = data.match(/IFR\/VFR: (.+)/i)?.[1]?.trim();
+  const departing = data.match(/Departing: (.+)/i)?.[1]?.trim();
+  const arriving = data.match(/Arriving: (.+)/i)?.[1]?.trim();
+  const cruisingLevel = data.match(/CRZ FL: (.+)/i)?.[1]?.trim();
+  
+  document.getElementById("callsign").value = callsign || "";
+  document.getElementById("aircraft").value = aircraft || "";
+  document.getElementById("flightRule").value = flightRule || "";
+  document.getElementById("cruisingLevel").value = cruisingLevel || "";
+  document.getElementById("departure").value = departing || "";
+  document.getElementById("arrival").value = arriving || "";
+}
+
 // Function to check visibility of the compass based on the iframe URL
 function checkCompassVisibility() {
   const iframe = document.getElementById('displayIframe');
@@ -160,7 +177,7 @@ function loadUrl(url) {
 function generateRandomSquawk() {
   // Create a random 3-digit number using only 0-7
   const randomPart = Array.from({ length: 3 }, () => Math.floor(Math.random() * 8)).join('');
-  return "3" + randomPart; // Ensures the squawk starts with 3
+  return "3" + randomPart; // Ensures the squawk starts with 
 }
 
 // Automatically generate a squawk code and set it in the squawk input field when the page loads
