@@ -1,0 +1,200 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --background-color: #ecf0f1;
+            --text-color: #34495e;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            background-image: url('https://images.unsplash.com/photo-1569154941061-e231b4725ef1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        
+
+        #flightDataInput {
+            width: 100%;
+            height: 30px;
+            resize: none;
+            padding: 0.2rem;
+            font-size: 0.8rem;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            margin: 0.25rem 0;
+            box-sizing: border-box;
+            border-radius: 8px; /* Added rounded corners */
+            margin-right: 0.5rem; /* Added spacing from the button */
+        }
+        .iframe-container {
+            border: none;
+            border-radius: 8px; /* Rounded corners */
+            overflow: hidden; /* Round the corners properly */
+            width: 100%; /* Use 100% width of the container */
+            margin-bottom: -0.5rem; /* Space below the iframe */
+            padding: 10px 20px;
+        }
+        
+        iframe {
+            width: 100%; /* Make the iframe responsive */
+            height: 480px; /* Adjusted to show only 5 rows */
+            border: none;
+            border-radius: 8px;
+        }
+
+        .form-group2 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: var(--background-color);
+        }
+        
+        @media (max-width: 768px) {
+            .iframe-container {
+                max-width: 100%; /* Full width for smaller screens */
+                max-height: 100%;
+            }
+            
+            iframe {
+                height: 95vh; /* Adjust height for smaller screens */
+            }
+        
+            .container {
+                max-width: 90%; /* Allow for more space on smaller screens */
+            }
+        }
+        
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 0.8rem;
+            /* Reduced padding */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 350px;
+            backdrop-filter: blur(10px);
+            box-sizing: border-box;
+            margin-left: 2rem;
+        }
+
+        h1 {
+            color: var(--secondary-color);
+            text-align: center;
+            margin-bottom: 1rem;
+            /* Reduced margin */
+            font-size: 2rem;
+            /* Reduced font size */
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 0.5rem;
+        }
+
+        form {
+            display: grid;
+            gap: 0.8rem;
+            /* Reduced gap */
+        }
+
+        .form-group {
+            position: relative;
+            display: flex;
+            /* Make form-group a flex container */
+            align-items: center;
+            /* Align items to the center */
+        }
+
+        label {
+            color: var(--text-color);
+            font-size: 0.8rem;
+            /* Reduced font size */
+            pointer-events: none;
+            /* Add padding to the label */
+            padding: 0.4rem 0.6rem;
+            /* Set background color for better visibility */
+            /* Make label a block element */
+            display: relative;
+            /* Add margin to the label */
+            margin-right: 0.5rem;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 0.4rem 0.6rem;
+            /* Reduced padding */
+            border: 2px solid var(--primary-color);
+            border-radius: 8px;
+            font-size: 0.8rem;
+            /* Reduced font size */
+            color: var(--text-color);
+            background-color: rgba(255, 255, 255, 0.8);
+            box-sizing: border-box;
+        }
+
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.3);
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.6rem;
+            /* Reduced padding */
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            /* Reduced font size */
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        button:active {
+            transform: translateY(1px);
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            gap: 0.6rem;
+            /* Reduced gap */
+        }
+
+        .button-group2 {
+            display: flex;
+            justify-content: space-between;
+            gap: 0.6rem;
+            /* Reduced gap */
+        }
+
