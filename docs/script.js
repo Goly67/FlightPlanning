@@ -137,12 +137,13 @@ setInterval(checkForUpdates, 30000); // 30000 milliseconds = 30 seconds
 
 function parseFlightData() {
   const data = document.getElementById("flightDataInput").value;
+
   const callsign = data.match(/Callsign:\s*(.+)/i)?.[1]?.trim();
   const aircraft = data.match(/Aircraft:\s*(.+)/i)?.[1]?.trim();
-  const flightRule = data.match(/IFR\/VFR:\s*(.+)/i)?.[1]?.trim();
-  const departing = data.match(/Departing:\s*(.+)/i)?.[1]?.trim();
-  const arriving = data.match(/Arriving:\s*(.+)/i)?.[1]?.trim();
-  const cruisingLevel = data.match(/CRZ FL:\s*(.+)/i)?.[1]?.trim();
+  const flightRule = data.match(/VFR\/IFR:\s*(.+)/i)?.[1]?.trim();
+  const departing = data.match(/(?:Departing|DEP):\s*(.+)/i)?.[1]?.trim();
+  const arriving = data.match(/(?:Arriving|ARR):\s*(.+)/i)?.[1]?.trim();
+  const cruisingLevel = data.match(/(?:CRZ FL|CFZ FL):\s*(.+)/i)?.[1]?.trim(); // Matches "CRZ FL" or "CFZ FL"
 
   document.getElementById("callsign").value = callsign || "";
 
@@ -150,7 +151,9 @@ function parseFlightData() {
   const aircraftMapping = {
     "A220": "Airbus A220",
     "A320": "Airbus A320",
+    "A330": "Airbus A330",
     "A330-300": "Airbus A330-300",
+    "A350": "Airbus A350",
     "A350-900": "Airbus A350-900",
     "B717": "Boeing 717",
     "B727": "Boeing 727",
@@ -173,24 +176,20 @@ function parseFlightData() {
   const aircraftOptions = Array.from(aircraftDropdown.options);
 
   if (aircraft) {
-    // Convert input to full name if abbreviation exists in mapping
     const fullAircraftName = aircraftMapping[aircraft.toUpperCase()] || aircraft;
-
-    // Search dropdown options for a match
     const matchedOption = aircraftOptions.find(option => 
       option.value.toLowerCase() === fullAircraftName.toLowerCase()
     );
 
     if (matchedOption) {
-      aircraftDropdown.value = matchedOption.value; // Select matched option in dropdown
+      aircraftDropdown.value = matchedOption.value;
     } else {
-      // Add new option if not in dropdown and select it
       const newOption = new Option(fullAircraftName, fullAircraftName);
       aircraftDropdown.add(newOption);
       aircraftDropdown.value = fullAircraftName;
     }
   } else {
-    aircraftDropdown.value = ""; // Reset if no aircraft is found
+    aircraftDropdown.value = "";
   }
 
   document.getElementById("flightRule").value = flightRule || "";
