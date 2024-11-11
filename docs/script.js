@@ -140,14 +140,19 @@ function parseFlightData() {
 
   const callsign = data.match(/Callsign:\s*(.+)/i)?.[1]?.trim();
   const aircraft = data.match(/Aircraft:\s*(.+)/i)?.[1]?.trim();
-  const flightRule = data.match(/VFR\/IFR:\s*(.+)/i)?.[1]?.trim();
+  const flightRule = data.match(/(?:VFR|IFR):\s*(\w+)/i)?.[1]?.trim(); // Adjusted regex to correctly capture IFR/VFR
   const departing = data.match(/(?:Departing|DEP):\s*(.+)/i)?.[1]?.trim();
   const arriving = data.match(/(?:Arriving|ARR):\s*(.+)/i)?.[1]?.trim();
-  const cruisingLevel = data.match(/(?:CRZ FL|CFZ FL):\s*(.+)/i)?.[1]?.trim(); // Matches "CRZ FL" or "CFZ FL"
+  const cruisingLevel = data.match(/(?:CRZ FL|CFZ FL):\s*(.+)/i)?.[1]?.trim();
 
+  // Set form values
   document.getElementById("callsign").value = callsign || "";
+  document.getElementById("aircraft").value = aircraft || "";
 
-  // Mapping of aircraft abbreviations to full names
+  // If flightRule is found, set it in the form, otherwise set it to an empty string
+  document.getElementById("flightRule").value = flightRule || "";
+
+  // Map aircraft abbreviations to full names (if needed)
   const aircraftMapping = {
     "A220": "Airbus A220",
     "A320": "Airbus A320",
@@ -192,7 +197,6 @@ function parseFlightData() {
     aircraftDropdown.value = "";
   }
 
-  document.getElementById("flightRule").value = flightRule || "";
   document.getElementById("cruisingLevel").value = cruisingLevel || "";
   document.getElementById("departure").value = departing || "";
   document.getElementById("arrival").value = arriving || "";
