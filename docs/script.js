@@ -223,12 +223,26 @@ function loadUrl(url) {
   iframe.onload = checkCompassVisibility; // Check after the iframe has loaded
 }
 
+// Store the last squawk code generated
+let lastSquawk = "";
+
 // Function to generate a random squawk code starting with "3"
 function generateRandomSquawk() {
   // Create a random 3-digit number using only 0-7
   const randomPart = Array.from({ length: 3 }, () => Math.floor(Math.random() * 8)).join('');
-  return "3" + randomPart; // Ensures the squawk starts with 
+  return "3" + randomPart; // Ensures the squawk starts with 3
+}
+
+// Function to ensure the new squawk code is different from the last one
+function generateUniqueSquawk() {
+  let newSquawk = generateRandomSquawk();
+  // Check if the new squawk is the same as the last one
+  while (newSquawk === lastSquawk) {
+    newSquawk = generateRandomSquawk(); // Regenerate until it's different
+  }
+  lastSquawk = newSquawk; // Store the new squawk
+  return newSquawk;
 }
 
 // Automatically generate a squawk code and set it in the squawk input field when the page loads
-document.getElementById('squawk').value = generateRandomSquawk();
+document.getElementById('squawk').value = generateUniqueSquawk();
