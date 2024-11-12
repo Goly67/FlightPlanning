@@ -237,8 +237,8 @@ button:active {
     align-items: center;
     border: none;
     position: fixed;  /* Fixed position */
-    top: 10px;        /* Spacing from the top */
-    right: 20px;      /* Move the button to the right side */
+    top: 1.5%;        /* Spacing from the top */
+    right: 1.5%;      /* Move the button to the right side */
     z-index: 1000;    /* Ensure it's on top */
     width: auto;      /* Remove stretching */
     height: auto;     /* Remove stretching */
