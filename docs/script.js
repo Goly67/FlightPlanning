@@ -1,3 +1,11 @@
+// Check if the user is logged in immediately upon page load
+if (!localStorage.getItem('isLoggedIn')) {
+    console.log("Not logged in - redirecting to login page.");
+    window.location.href = 'https://goly67.github.io/FligtPlannerLogin/';
+} else {
+    console.log("User is logged in.");
+}
+
 window.onload = function() {
   document.getElementById('callsign').focus();
   const savedUrl = localStorage.getItem('lastIframeUrl');
@@ -223,10 +231,14 @@ function loadUrl(url) {
   iframe.onload = checkCompassVisibility; // Check after the iframe has loaded
 }
     document.addEventListener("DOMContentLoaded", function() {
-        if (!localStorage.getItem('isLoggedIn')) {
-            window.location.href = 'https://goly67.github.io/FligtPlannerLogin/';
-        }
-    });
+    if (!localStorage.getItem('isLoggedIn')) {
+        console.log("Not logged in - redirecting to login page.");
+        window.location.href = 'https://goly67.github.io/FligtPlannerLogin/';
+    } else {
+        console.log("User is logged in.");
+    }
+});
+
 
 // Store the last squawk code generated
 let lastSquawk = "";
