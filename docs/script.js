@@ -223,6 +223,14 @@ function loadUrl(url) {
   iframe.onload = checkCompassVisibility; // Check after the iframe has loaded
 }
 
+document.addEventListener("DOMContentLoaded", function() {
+    // Check if the login token is present
+    if (localStorage.getItem('isLoggedIn') !== 'true') {
+        // Redirect to the login page if not logged in
+        window.location.href = 'https://goly67.github.io/FlightPlannerLogin/';
+    }
+});
+
 // Store the last squawk code generated
 let lastSquawk = "";
 
