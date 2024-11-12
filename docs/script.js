@@ -222,14 +222,11 @@ function loadUrl(url) {
   // Check compass visibility after loading the new URL
   iframe.onload = checkCompassVisibility; // Check after the iframe has loaded
 }
-
-document.addEventListener("DOMContentLoaded", function() {
-    // Check if the login token is present
-    if (localStorage.getItem('isLoggedIn') !== 'true') {
-        // Redirect to the login page if not logged in
-        window.location.href = 'https://goly67.github.io/FlightPlannerLogin/';
-    }
-});
+    document.addEventListener("DOMContentLoaded", function() {
+        if (!localStorage.getItem('isLoggedIn')) {
+            window.location.href = 'https://goly67.github.io/FligtPlannerLogin/';
+        }
+    });
 
 // Store the last squawk code generated
 let lastSquawk = "";
