@@ -1,15 +1,15 @@
 // Check if the user is logged in immediately upon page load
 if (!localStorage.getItem('isLoggedIn')) {
-    console.log("Not logged in - redirecting to login page.");
-    window.location.href = 'https://goly67.github.io/FlightPlannerLogin/';
+  console.log("Not logged in - redirecting to login page.");
+  window.location.href = 'https://goly67.github.io/FlightPlannerLogin/';
 } else {
-    console.log("User is logged in.");
+  console.log("User is logged in.");
 }
 
 window.onload = function() {
   document.getElementById('callsign').focus();
   const savedUrl = localStorage.getItem('lastIframeUrl');
-  document.getElementById('displayIframe').src = savedUrl ? savedUrl : '';
+  document.getElementById('displayIframe');
   document.getElementById('squawk').value = generateRandomSquawk();
 
   // Check if the compass should be visible on load
@@ -230,7 +230,7 @@ function loadUrl(url) {
   // Check compass visibility after loading the new URL
   iframe.onload = checkCompassVisibility; // Check after the iframe has loaded
 }
-    document.addEventListener("DOMContentLoaded", function() {
+  document.addEventListener("DOMContentLoaded", function() {
     if (!localStorage.getItem('isLoggedIn')) {
         console.log("Not logged in - redirecting to login page.");
         window.location.href = 'https://goly67.github.io/FlightPlannerLogin/';
@@ -238,7 +238,6 @@ function loadUrl(url) {
         console.log("User is logged in.");
     }
 });
-
 
 // Store the last squawk code generated
 let lastSquawk = "";
