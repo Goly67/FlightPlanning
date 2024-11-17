@@ -57,7 +57,7 @@ body {
 
 iframe {
     width: calc(100% - 20px); /* Slightly reduce width to create visible edges */
-    height: 575px;
+    height: 578px;
     border-radius: 20px; /* Keeps corners rounded */
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Adds subtle shadow for depth */
     margin: 0px 25px; /* Adds space on the left and right */
