@@ -1,10 +1,17 @@
 // Check if the user is logged in immediately upon page load
-if (!localStorage.getItem('isLoggedIn')) {
-  console.log("Not logged in - redirecting to login page.");
-  window.location.href = 'https://goly67.github.io/FlightPlannerLogin/';
-} else {
-  console.log("User is logged in.");
-}
+document.addEventListener("DOMContentLoaded", function () {
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+    
+    // Redirect to login page if not logged in
+    if (!isLoggedIn || isLoggedIn !== 'true') {
+        console.log("Not logged in - redirecting to login page.");
+        window.location.href = 'https://goly67.github.io/FlightPlannerLogin/';
+        return; // Stop further execution
+    }
+
+    console.log("User is logged in.");
+    initializePage(); // Call a function to set up the page after login
+});
 
 window.onload = function() {
   document.getElementById('callsign').focus();
