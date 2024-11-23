@@ -258,12 +258,13 @@ function loadUrl(url) {
   iframe.onload = checkCompassVisibility; // Check after the iframe has loaded
 }
 document.addEventListener("DOMContentLoaded", function () {
-  if (!localStorage.getItem('isLoggedIn')) {
-    console.log("Not logged in - redirecting to login page.");
-    window.location.href = 'https://goly67.github.io/FlightPlannerLogin/';
-  } else {
-    console.log("User is logged in.");
-  }
+    if (localStorage.getItem('isLoggedIn') !== 'true') {
+        console.log("Not logged in - redirecting to login page.");
+        window.location.href = 'https://goly67.github.io/FlightPlannerLogin/';
+    } else {
+        console.log("User is logged in.");
+        // Optionally, load user's name or any other user-specific data here
+    }
 });
 
 // Store the last squawk code generated
