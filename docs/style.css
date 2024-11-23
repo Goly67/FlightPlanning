@@ -8,6 +8,17 @@
     --text-color: #34495e;
 }
 
+.welcome-container {
+            background-color: #3498db;
+            color: white;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin: 1.5rem 1rem;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
 body {
     font-family: 'Poppins', sans-serif;
     background-color: var(--background-color);
