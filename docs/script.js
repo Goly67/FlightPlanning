@@ -151,28 +151,6 @@ window.addEventListener('flightPlanUpdated', function () {
   flightPlans = loadFlightPlans(); // Reload flight plans after the update
 });
 
-// Function to check if the Google Sheets iframe should be reloaded
-function checkForUpdates() {
-  // Get the iframe element
-  const iframe = document.getElementById('flightPlanIframe');
-
-  // Get the current timestamp for the iframe URL
-  const currentUrl = iframe.src.split('?')[0]; // Strip any query parameters
-  const newUrl = currentUrl + "?t=" + new Date().getTime(); // Add a timestamp to force reload
-
-  // Fetch the sheet to check if there are any updates (You can also use an API if available)
-  fetch(newUrl)
-    .then(response => {
-      if (response.ok) {
-        // If the fetch is successful, reload the iframe with a new timestamp
-        iframe.src = newUrl; // This will refresh the iframe
-      }
-    })
-    .catch(error => {
-      console.error('Error fetching the Google Sheet:', error);
-    });
-}
-
 // Set an interval to check for updates every 30 seconds (adjust as needed)
 setInterval(checkForUpdates, 30000); // 30000 milliseconds = 30 seconds
 
@@ -284,33 +262,6 @@ function generateUniqueSquawk() {
   lastSquawk = newSquawk; // Store the new squawk
   return newSquawk;
 }
-
-window.onload = function () {
-  // Assuming you have an API that returns user info, including the username
-  fetch('https://your-api-url.com/getUserInfo', {
-    method: 'GET', // or 'POST' depending on your API
-    headers: {
-      'Authorization': 'Bearer ' + localStorage.getItem('token') // Or other auth mechanism
-    }
-  })
-    .then(response => response.json())
-    .then(data => {
-      const username = data.username;  // Assuming the API returns { username: 'JohnDoe' }
-      const welcomeMessageDiv = document.getElementById('welcomeMessage');
-
-      if (username) {
-        welcomeMessageDiv.textContent = `Welcome, ${username}`;
-      } else {
-        welcomeMessageDiv.textContent = `Welcome, Guest`;
-      }
-    })
-    .catch(error => {
-      console.error('Error fetching user info:', error);
-      const welcomeMessageDiv = document.getElementById('welcomeMessage');
-      welcomeMessageDiv.textContent = `Welcome, Guest`;
-    });
-};
-
 
 // Automatically generate a squawk code and set it in the squawk input field when the page loads
 document.getElementById('squawk').value = generateUniqueSquawk();
