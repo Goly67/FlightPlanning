@@ -1,13 +1,17 @@
+// Logout function with API call
 function logout() {
     // Clear local storage
     localStorage.removeItem("authToken");
     localStorage.removeItem("userName");
     localStorage.removeItem("isLoggedIn");
 
-    // Optional: Call the logout API
-    fetch('/api/logout', {
+    // Call the logout API on your backend server
+    fetch('https://loginapilogger.glitch.me/api/logout', {
         method: 'POST',
-        credentials: 'include'
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        credentials: 'include' // Include credentials like cookies if needed
     })
     .then(response => {
         if (response.ok) {
