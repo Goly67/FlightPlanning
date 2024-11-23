@@ -246,22 +246,24 @@ button:active {
     animation: spin_357 0.5s linear;
 }
 
-.logout-button {
-            background-color: #f44336; /* Red */
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            border-radius: 5px;
-            position: absolute;
-            top: 10px;
-            left: 10px; /* Align to the left */
-        }
+    /* Ensure the logout button is in the top-left corner */
+    .logout-button {
+        background-color: #f44336; /* Red */
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+        position: fixed; /* Use fixed to place it relative to the viewport */
+        top: 0; /* Align to the top */
+        left: 0; /* Align to the left */
+        margin: 0; /* Remove any extra space */
+    }
 
-        .logout-button:hover {
-            background-color: #d32f2f; /* Darker red */
-        }
+    .logout-button:hover {
+        background-color: #d32f2f; /* Darker red */
+    }
 
 @keyframes spin_357 {
     from {
