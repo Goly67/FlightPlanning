@@ -34,6 +34,7 @@ function checkLoginStatus() {
     if (!isLoggedIn || isLoggedIn !== "true") {
         console.log('User not logged in. Redirecting to login page...');
         window.location.href = 'https://goly67.github.io/FlightPlannerLogin/';  // Redirect to login page
+        return; // Prevent further code execution
     }
 }
 
