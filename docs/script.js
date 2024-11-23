@@ -1,44 +1,27 @@
-document.addEventListener("DOMContentLoaded", function () {
-    // Display user's name from localStorage
-    const userName = localStorage.getItem("userName");
-    const welcomeMessageDiv = document.getElementById('welcomeMessage');
-    if (userName) {
-        welcomeMessageDiv.textContent = `Welcome, ${userName}`;
-    } else {
-        welcomeMessageDiv.textContent = "Welcome, Guest";
-    }
+function logout() {
+    // Clear local storage
+    localStorage.removeItem("authToken");
+    localStorage.removeItem("userName");
+    localStorage.removeItem("isLoggedIn");
 
-    // Add logout functionality
-    const logoutButton = document.getElementById("logoutButton");
-    if (logoutButton) {
-        logoutButton.addEventListener("click", function () {
-  // Clear local storage
-  localStorage.removeItem("authToken");
-  localStorage.removeItem("userName");
-  localStorage.removeItem("isLoggedIn");
-
-  // Update the UI immediately
-  document.getElementById("userName").textContent = "Guest";
-  document.getElementById("welcomeMessage").textContent = "Welcome, Guest";
-
-  // Optional: Call the logout API
-  fetch('/api/logout', {
-    method: 'POST',
-    credentials: 'include'
-  })
-  .then(response => {
-    if (response.ok) {
-      alert("Logged out successfully");
-      window.location.href = 'https://goly67.github.io/FlightPlannerLogin/';
-    } else {
-      alert("Failed to log out. Please try again.");
-    }
-  })
-  .catch(error => {
-    console.error("Error logging out:", error);
-    alert("An error occurred while logging out.");
-  });
-});
+    // Optional: Call the logout API
+    fetch('/api/logout', {
+        method: 'POST',
+        credentials: 'include'
+    })
+    .then(response => {
+        if (response.ok) {
+            alert("Logged out successfully");
+            window.location.href = 'https://goly67.github.io/FlightPlannerLogin/';
+        } else {
+            alert("Failed to log out. Please try again.");
+        }
+    })
+    .catch(error => {
+        console.error("Error logging out:", error);
+        alert("An error occurred while logging out.");
+    });
+}
 
 window.onload = function () {
   document.getElementById('callsign').focus();
