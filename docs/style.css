@@ -246,9 +246,9 @@ button:active {
     animation: spin_357 0.5s linear;
 }
 
-    .logoutButton {
+    .logout-button {
     color: white;
-    background-color: #e74c3c;  /* Optional: color for logout button */
+    background-color: green;  /* Optional: color for logout button */
     font-weight: 500;
     border-radius: 0.5rem;
     font-size: 0.9rem; /* Adjusted font size */
@@ -260,15 +260,25 @@ button:active {
     border: none;
     position: fixed;  /* Fixed position */
     top: 1.5%;        /* Spacing from the top */
-    left: 1.5%;       /* Move the button to the left side */
+    left: 0.8%;       /* Move the button to the left side */
     z-index: 1000;    /* Ensure it's on top */
     width: auto;      /* No stretching */
     height: auto;     /* No stretching */
 }
 
 
-.logoutButton:hover {
+.logout-button:hover {
     background-color: #ff1a1a; /* Optional: hover effect */
+}
+
+#welcomeMessage {
+    position: fixed;
+    top: 6%;  /* Position it below the buttons */
+    left: 1.5%;  /* Align to the left */
+    font-size: 1.2rem;  /* Adjust font size */
+    color: #2c3e50;  /* Text color */
+    font-weight: bold;
+    z-index: 999;  /* Ensure it's above other content */
 }
 
 

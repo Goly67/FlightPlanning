@@ -1,31 +1,32 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    // Add logout functionality
-    const logoutButton = document.getElementById("logoutButton");
-    if (logoutButton) {
-        logoutButton.addEventListener("click", function () {
-            // Clear local storage or session storage (if used for tokens)
-            localStorage.removeItem("authToken"); // Adjust key based on your token storage
-            
-            // Make a request to your API to log out (if applicable)
-            fetch('/api/logout', { method: 'POST', credentials: 'include' })
-                .then(response => {
-                    if (response.ok) {
-                        alert("Logged out successfully");
-                        // Redirect to login page
-                        window.location.href = 'https://goly67.github.io/FlightPlannerLogin/';
-                    } else {
-                        alert("Failed to log out. Please try again.");
-                    }
-                })
-                .catch(error => {
-                    console.error("Error logging out:", error);
-                    alert("An error occurred while logging out.");
-                });
-        });
-    }
+  // Add logout functionality
+  const logoutButton = document.getElementById("logoutButton");
+  if (logoutButton) {
+    logoutButton.addEventListener("click", function () {
+      // Clear local storage or session storage (if used for tokens)
+      localStorage.removeItem("authToken"); // Adjust key based on your token storage
 
-window.onload = function() {
+      // Make a request to your API to log out (if applicable)
+      fetch('/api/logout', { method: 'POST', credentials: 'include' })
+        .then(response => {
+          if (response.ok) {
+            alert("Logged out successfully");
+            // Redirect to login page
+            window.location.href = 'https://goly67.github.io/FlightPlannerLogin/';
+          } else {
+            alert("Failed to log out. Please try again.");
+          }
+        })
+        .catch(error => {
+          console.error("Error logging out:", error);
+          alert("An error occurred while logging out.");
+        });
+    });
+  }
+
+});
+window.onload = function () {
   document.getElementById('callsign').focus();
   const savedUrl = localStorage.getItem('lastIframeUrl');
   document.getElementById('displayIframe');
@@ -45,20 +46,20 @@ document.getElementById('flightPlanForm').addEventListener('submit', function (e
   const cruisingLevel = document.getElementById('cruisingLevel').value;
 
   if (!departure || !arrival || !squawk || !cruisingLevel) {
-      alert("Departure, Arrival, Squawk, and Cruising Level are required fields!");
-      return;  // Don't submit if any of these fields are empty
+    alert("Departure, Arrival, Squawk, and Cruising Level are required fields!");
+    return;  // Don't submit if any of these fields are empty
   }
 
   const formData = {
-      id: Date.now(),
-      callsign: document.getElementById('callsign').value,
-      aircraft: document.getElementById('aircraft').value,
-      flightRule: document.getElementById('flightRule').value,
-      cruisingLevel: document.getElementById('cruisingLevel').value,
-      departure: departure,
-      arrival: arrival,
-      sid: document.getElementById('sid').value || 'Radar vectors',
-      squawk: squawk
+    id: Date.now(),
+    callsign: document.getElementById('callsign').value,
+    aircraft: document.getElementById('aircraft').value,
+    flightRule: document.getElementById('flightRule').value,
+    cruisingLevel: document.getElementById('cruisingLevel').value,
+    departure: departure,
+    arrival: arrival,
+    sid: document.getElementById('sid').value || 'Radar vectors',
+    squawk: squawk
   };
 
   // Declare flightPlans inside the event listener
@@ -141,22 +142,22 @@ window.addEventListener('flightPlanUpdated', function () {
 function checkForUpdates() {
   // Get the iframe element
   const iframe = document.getElementById('flightPlanIframe');
-  
+
   // Get the current timestamp for the iframe URL
   const currentUrl = iframe.src.split('?')[0]; // Strip any query parameters
   const newUrl = currentUrl + "?t=" + new Date().getTime(); // Add a timestamp to force reload
 
   // Fetch the sheet to check if there are any updates (You can also use an API if available)
   fetch(newUrl)
-      .then(response => {
-          if (response.ok) {
-              // If the fetch is successful, reload the iframe with a new timestamp
-              iframe.src = newUrl; // This will refresh the iframe
-          }
-      })
-      .catch(error => {
-          console.error('Error fetching the Google Sheet:', error);
-      });
+    .then(response => {
+      if (response.ok) {
+        // If the fetch is successful, reload the iframe with a new timestamp
+        iframe.src = newUrl; // This will refresh the iframe
+      }
+    })
+    .catch(error => {
+      console.error('Error fetching the Google Sheet:', error);
+    });
 }
 
 // Set an interval to check for updates every 30 seconds (adjust as needed)
@@ -209,7 +210,7 @@ function parseFlightData() {
 
   if (aircraft) {
     const fullAircraftName = aircraftMapping[aircraft.toUpperCase()] || aircraft;
-    const matchedOption = aircraftOptions.find(option => 
+    const matchedOption = aircraftOptions.find(option =>
       option.value.toLowerCase() === fullAircraftName.toLowerCase()
     );
 
@@ -249,13 +250,13 @@ function loadUrl(url) {
   // Check compass visibility after loading the new URL
   iframe.onload = checkCompassVisibility; // Check after the iframe has loaded
 }
-  document.addEventListener("DOMContentLoaded", function() {
-    if (!localStorage.getItem('isLoggedIn')) {
-        console.log("Not logged in - redirecting to login page.");
-        window.location.href = 'https://goly67.github.io/FlightPlannerLogin/';
-    } else {
-        console.log("User is logged in.");
-    }
+document.addEventListener("DOMContentLoaded", function () {
+  if (!localStorage.getItem('isLoggedIn')) {
+    console.log("Not logged in - redirecting to login page.");
+    window.location.href = 'https://goly67.github.io/FlightPlannerLogin/';
+  } else {
+    console.log("User is logged in.");
+  }
 });
 
 // Store the last squawk code generated
@@ -278,6 +279,33 @@ function generateUniqueSquawk() {
   lastSquawk = newSquawk; // Store the new squawk
   return newSquawk;
 }
+
+window.onload = function () {
+  // Assuming you have an API that returns user info, including the username
+  fetch('https://your-api-url.com/getUserInfo', {
+    method: 'GET', // or 'POST' depending on your API
+    headers: {
+      'Authorization': 'Bearer ' + localStorage.getItem('token') // Or other auth mechanism
+    }
+  })
+    .then(response => response.json())
+    .then(data => {
+      const username = data.username;  // Assuming the API returns { username: 'JohnDoe' }
+      const welcomeMessageDiv = document.getElementById('welcomeMessage');
+
+      if (username) {
+        welcomeMessageDiv.textContent = `Welcome, ${username}`;
+      } else {
+        welcomeMessageDiv.textContent = `Welcome, Guest`;
+      }
+    })
+    .catch(error => {
+      console.error('Error fetching user info:', error);
+      const welcomeMessageDiv = document.getElementById('welcomeMessage');
+      welcomeMessageDiv.textContent = `Welcome, Guest`;
+    });
+};
+
 
 // Automatically generate a squawk code and set it in the squawk input field when the page loads
 document.getElementById('squawk').value = generateUniqueSquawk();
