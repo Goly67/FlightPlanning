@@ -26,17 +26,17 @@ function logout() {
     });
 }
 
-window.onload = function () {
-    // Check if the user is logged in
+function checkLoginStatus() {
     const isLoggedIn = localStorage.getItem("isLoggedIn");
 
-    if (!isLoggedIn) {
-        // Redirect to login page if not logged in
+    if (!isLoggedIn || isLoggedIn !== "true") {
+        // If the user is not logged in, redirect to the login page
         window.location.href = 'https://goly67.github.io/FlightPlannerLogin/';
-        return; // Prevent further execution of the page
     }
+}
 
 window.onload = function () {
+  checkLoginStatus();
   document.getElementById('callsign').focus();
   const savedUrl = localStorage.getItem('lastIframeUrl');
   document.getElementById('displayIframe');
