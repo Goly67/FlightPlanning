@@ -15,7 +15,6 @@ function logout() {
     })
     .then(response => {
         if (response.ok) {
-            alert("Logged out successfully");
             window.location.href = 'https://goly67.github.io/FlightPlannerLogin/';
         } else {
             alert("Failed to log out. Please try again.");
