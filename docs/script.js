@@ -15,6 +15,7 @@ function logout() {
     })
     .then(response => {
         if (response.ok) {
+            // Redirect to the login page after logout
             window.location.href = 'https://goly67.github.io/FlightPlannerLogin/';
         } else {
             alert("Failed to log out. Please try again.");
@@ -31,6 +32,7 @@ function checkLoginStatus() {
     const isLoggedIn = localStorage.getItem("isLoggedIn");
     console.log('Login Status:', isLoggedIn);  // Debugging log
 
+    // If the user is not logged in, redirect to login page
     if (!isLoggedIn || isLoggedIn !== "true") {
         console.log('User not logged in. Redirecting to login page...');
         window.location.href = 'https://goly67.github.io/FlightPlannerLogin/';  // Redirect to login page
@@ -39,7 +41,8 @@ function checkLoginStatus() {
 }
 
 window.onload = function() {
-    checkLoginStatus();  // Check login status
+    // Check if the user is logged in when the page loads
+    checkLoginStatus();
 
     // Your existing flight planner page logic...
     console.log("Flight planner page loaded.");
@@ -50,6 +53,7 @@ window.onload = function() {
     document.getElementById('squawk').value = generateRandomSquawk();
     checkCompassVisibility();
 };
+
 
 document.getElementById('flightPlanForm').addEventListener('submit', function (e) {
   e.preventDefault();
