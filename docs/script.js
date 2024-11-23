@@ -29,25 +29,26 @@ function logout() {
 // Function to check if the user is logged in
 function checkLoginStatus() {
     const isLoggedIn = localStorage.getItem("isLoggedIn");
+    console.log('Login Status:', isLoggedIn);  // Debugging log
 
-    // Redirect to login page if not logged in
     if (!isLoggedIn || isLoggedIn !== "true") {
+        console.log('User not logged in. Redirecting to login page...');
         window.location.href = 'https://goly67.github.io/FlightPlannerLogin/';  // Redirect to login page
     }
 }
 
+window.onload = function() {
+    checkLoginStatus();  // Check login status
 
-window.onload = function () {
-  checkLoginStatus();
-  document.getElementById('callsign').focus();
-  const savedUrl = localStorage.getItem('lastIframeUrl');
-  document.getElementById('displayIframe');
-  document.getElementById('squawk').value = generateRandomSquawk();
+    // Your existing flight planner page logic...
+    console.log("Flight planner page loaded.");
 
-  // Check if the compass should be visible on load
-  checkCompassVisibility();
+    document.getElementById('callsign').focus();
+    const savedUrl = localStorage.getItem('lastIframeUrl');
+    document.getElementById('displayIframe');
+    document.getElementById('squawk').value = generateRandomSquawk();
+    checkCompassVisibility();
 };
-
 
 document.getElementById('flightPlanForm').addEventListener('submit', function (e) {
   e.preventDefault();
