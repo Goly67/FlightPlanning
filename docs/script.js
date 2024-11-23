@@ -36,6 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         });
     }
+});
 
 window.onload = function () {
   document.getElementById('callsign').focus();
