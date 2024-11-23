@@ -1,42 +1,41 @@
 document.addEventListener("DOMContentLoaded", function () {
-            // Display user's name
-            const userName = localStorage.getItem("userName");
-            if (userName) {
-                document.getElementById("userName").textContent = userName;
-            } else {
-                document.getElementById("welcomeMessage").textContent = "Welcome, Guest";
-            }
+    // Display user's name from localStorage
+    const userName = localStorage.getItem("userName");
+    const welcomeMessageDiv = document.getElementById('welcomeMessage');
+    if (userName) {
+        welcomeMessageDiv.textContent = `Welcome, ${userName}`;
+    } else {
+        welcomeMessageDiv.textContent = "Welcome, Guest";
+    }
 
-            // Add logout functionality
-            const logoutButton = document.getElementById("logoutButton");
-if (logoutButton) {
-  logoutButton.addEventListener("click", function () {
-    // Clear local storage
-    localStorage.removeItem("authToken");
-    localStorage.removeItem("userName");
-    localStorage.removeItem("isLoggedIn");
+    // Add logout functionality
+    const logoutButton = document.getElementById("logoutButton");
+    if (logoutButton) {
+        logoutButton.addEventListener("click", function () {
+            // Clear local storage
+            localStorage.removeItem("authToken");
+            localStorage.removeItem("userName");
+            localStorage.removeItem("isLoggedIn");
 
-    // Optional: Make an API call to log the user out on the server side
-    fetch('/api/logout', {
-      method: 'POST',
-      credentials: 'include'
-    })
-    .then(response => {
-      if (response.ok) {
-        alert("Logged out successfully");
-        window.location.href = 'https://goly67.github.io/FlightPlannerLogin/';
-      } else {
-        alert("Failed to log out. Please try again.");
-      }
-    })
-    .catch(error => {
-      console.error("Error logging out:", error);
-      alert("An error occurred while logging out.");
-    });
-  });
-}
-
+            // Optional: Make an API call to log the user out on the server side
+            fetch('/api/logout', {
+                method: 'POST',
+                credentials: 'include'
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert("Logged out successfully");
+                    window.location.href = 'https://goly67.github.io/FlightPlannerLogin/';
+                } else {
+                    alert("Failed to log out. Please try again.");
+                }
+            })
+            .catch(error => {
+                console.error("Error logging out:", error);
+                alert("An error occurred while logging out.");
+            });
         });
+    }
 
 window.onload = function () {
   document.getElementById('callsign').focus();
