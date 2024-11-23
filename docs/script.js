@@ -26,14 +26,16 @@ function logout() {
     });
 }
 
+// Function to check if the user is logged in
 function checkLoginStatus() {
     const isLoggedIn = localStorage.getItem("isLoggedIn");
 
+    // Redirect to login page if not logged in
     if (!isLoggedIn || isLoggedIn !== "true") {
-        // If the user is not logged in, redirect to the login page
-        window.location.href = 'https://goly67.github.io/FlightPlannerLogin/';
+        window.location.href = 'https://goly67.github.io/FlightPlannerLogin/';  // Redirect to login page
     }
 }
+
 
 window.onload = function () {
   checkLoginStatus();
