@@ -13,10 +13,14 @@
             color: white;
             padding: 1rem;
             border-radius: 0.5rem;
-            margin: 1.5rem 1rem;
             text-align: center;
             font-size: 1.2rem;
             font-weight: 500;
+            margin: 1rem; /* Space from the top */
+            position: fixed;
+            top: 0; /* Stick to the top of the page */
+            width: 100%; /* Full width */
+            z-index: 1000; /* Ensure it's on top */
         }
 
 body {
