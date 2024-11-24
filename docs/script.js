@@ -27,18 +27,42 @@ function logout() {
     });
 }
 
-// Function to check if the user is logged in
 function checkLoginStatus() {
-    const isLoggedIn = localStorage.getItem("isLoggedIn");
-    console.log('Login Status:', isLoggedIn);  // Debugging log
+    const authToken = localStorage.getItem("authToken");
 
-    // If the user is not logged in, redirect to login page
-    if (!isLoggedIn || isLoggedIn !== "true") {
-        console.log('User not logged in. Redirecting to login page...');
-        window.location.href = 'https://goly67.github.io/FlightPlannerLogin/';  // Redirect to login page
-        return; // Prevent further code execution
+    // If no token exists in localStorage, redirect to login page
+    if (!authToken) {
+        console.log("No auth token found. Redirecting to login page...");
+        window.location.href = 'https://goly67.github.io/FlightPlannerLogin/';
+        return;
     }
+
+    // Verify login status with the backend
+    fetch('https://loginapilogger.glitch.me/api/validate-token', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${authToken}`, // Send token in the Authorization header
+        },
+    })
+        .then(response => {
+            if (response.ok) {
+                console.log("User is logged in.");
+                // Optionally load user-specific data here
+            } else {
+                console.log("Invalid token or session expired. Redirecting to login page...");
+                localStorage.removeItem("authToken"); // Clear invalid token
+                localStorage.removeItem("isLoggedIn");
+                window.location.href = 'https://goly67.github.io/FlightPlannerLogin/';
+            }
+        })
+        .catch(error => {
+            console.error("Error validating login status:", error);
+            alert("An error occurred while checking login status.");
+            window.location.href = 'https://goly67.github.io/FlightPlannerLogin/';
+        });
 }
+
 
 window.onload = function() {
     // Check if the user is logged in when the page loads
