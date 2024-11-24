@@ -28,41 +28,40 @@ function logout() {
 }
 
 function checkLoginStatus() {
-    const authToken = localStorage.getItem("authToken");
+    const token = localStorage.getItem("authToken");
 
-    // If no token exists in localStorage, redirect to login page
-    if (!authToken) {
-        console.log("No auth token found. Redirecting to login page...");
+    if (!token) {
+        console.log('No token found. Redirecting to login page...');
         window.location.href = 'https://goly67.github.io/FlightPlannerLogin/';
         return;
     }
 
-    // Verify login status with the backend
+    // Validate the token with the server
     fetch('https://loginapilogger.glitch.me/api/validate-token', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${authToken}`, // Send token in the Authorization header
-        },
+            'Authorization': `Bearer ${token}`
+        }
     })
-        .then(response => {
-            if (response.ok) {
-                console.log("User is logged in.");
-                // Optionally load user-specific data here
-            } else {
-                console.log("Invalid token or session expired. Redirecting to login page...");
-                localStorage.removeItem("authToken"); // Clear invalid token
-                localStorage.removeItem("isLoggedIn");
-                window.location.href = 'https://goly67.github.io/FlightPlannerLogin/';
-            }
-        })
-        .catch(error => {
-            console.error("Error validating login status:", error);
-            alert("An error occurred while checking login status.");
+    .then(response => {
+        if (response.ok) {
+            console.log('Token is valid. User is logged in.');
+            return response.json(); // Optionally process the response
+        } else {
+            console.log('Invalid or expired token. Redirecting to login page...');
+            localStorage.removeItem("authToken");
+            localStorage.removeItem("userName");
+            localStorage.removeItem("isLoggedIn");
             window.location.href = 'https://goly67.github.io/FlightPlannerLogin/';
-        });
+        }
+    })
+    .catch(error => {
+        console.error('Error validating token:', error);
+        alert("An error occurred. Please log in again.");
+        window.location.href = 'https://goly67.github.io/FlightPlannerLogin/';
+    });
 }
-
 
 window.onload = function() {
     // Check if the user is logged in when the page loads
