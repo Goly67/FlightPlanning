@@ -9,19 +9,19 @@
 }
 
 .welcome-container {
-            background-color: #3498db;
-            color: white;
-            padding: 1rem;
-            border-radius: 0.5rem;
-            text-align: center;
-            font-size: 1.2rem;
-            font-weight: 500;
-            margin: 1rem; /* Space from the top */
-            position: fixed;
-            top: 0; /* Stick to the top of the page */
-            width: 100%; /* Full width */
-            z-index: 1000; /* Ensure it's on top */
-        }
+    background-color: #3498db;
+    color: white;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin: 1rem; /* Space from the top */
+    position: fixed;
+    top: 0; /* Stick to the top of the page */
+    width: 100%; /* Full width */
+    z-index: 1000; /* Ensure it's on top */
+}
 
 body {
     font-family: 'Poppins', sans-serif;
@@ -36,6 +36,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    zoom: 0.9; /* Zoom out the body for smaller screens */
 }
 
 .compass-container {
@@ -91,23 +92,27 @@ iframe {
 }
 
 @media (max-width: 768px) {
-    .iframe-container {
-        max-width: 100%;
-        /* Full width for smaller screens */
-        max-height: 100%;
-    }
-
+    /* Hide iframe on mobile */
     iframe {
-        height: 95vh;
-        /* Adjust height for smaller screens */
+        display: none;
     }
 
+    /* Adjust container for mobile */
     .container {
         max-width: 90%;
         /* Allow for more space on smaller screens */
     }
-}
 
+    /* Ensure the welcome message appears on mobile */
+    #welcomeMessage {
+        font-size: 1.0rem; /* Smaller text size for mobile */
+    }
+
+    /* Zoom out the body */
+    body {
+        zoom: 0.85; /* Further zoom out on smaller screens */
+    }
+}
 
 .container {
     background-color: rgba(255, 255, 255, 0.9);
@@ -261,7 +266,7 @@ button:active {
     animation: spin_357 0.5s linear;
 }
 
-    .logout-button {
+.logout-button {
     color: white;
     background-color: green;  /* Optional: color for logout button */
     font-weight: 500;
@@ -286,22 +291,24 @@ button:active {
     background-color: #ff1a1a; /* Optional: hover effect */
 }
 
-#welcomeMessage {
-    position: fixed;
-    top: 6%;  /* Position it below the buttons */
-    left: 1.5%;  /* Align to the left */
-    font-size: 1.2rem;  /* Adjust font size */
-    color: #2c3e50;  /* Text color */
-    font-weight: bold;
-    z-index: 999;  /* Ensure it's above other content */
+.logout-button svg {
+    display: inline;
+    width: 1.3rem;
+    height: 1.3rem;
+    margin-right: 0.5rem;  /* Space between icon and text */
+    color: white;
 }
 
+.logout-button:focus svg {
+    animation: spin_357 0.5s linear;
+}
 
 @keyframes spin_357 {
-    from {
+    0% {
         transform: rotate(0deg);
     }
-    to {
-        transform: rotate(360deg);
+    100% {
+        transform: rotate(357deg);
     }
 }
+
